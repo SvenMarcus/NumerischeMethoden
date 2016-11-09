@@ -3,7 +3,7 @@ package irmb.numerik;
 /**
  * Created by Sven on 09.11.2016.
  */
-public class Result {
+public class GridNodeResult {
 
     private double coordinate;
     private double simulatedResult;
@@ -22,7 +22,7 @@ public class Result {
         return simulatedResult;
     }
 
-    public void setSimulatedResult(double simulatedResult) {
+    public void setNumericResult(double simulatedResult) {
         this.simulatedResult = simulatedResult;
     }
 

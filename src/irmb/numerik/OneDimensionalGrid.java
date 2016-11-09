@@ -46,7 +46,20 @@ public class OneDimensionalGrid {
     }
 
     public double getCoordinateOf(int node) {
-        return node * gridDelta;
+        if (node < numberOfNodes)
+            return node * gridDelta;
+        throw new IndexOutOfBoundsException("Max index: " + numberOfNodes + ", got: " + node);
     }
 
+    public double[] getGridData() {
+        return nodeValues;
+    }
+
+    public double getLeftBoundaryCondition() {
+        return nodeValues[0];
+    }
+
+    public double getRightBoundaryCondition() {
+        return nodeValues[nodeValues.length - 1];
+    }
 }

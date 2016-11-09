@@ -51,6 +51,7 @@ public class stationär_Dirichlet_RB {
             Dx[n] = L / (num_nodes - 1);
 
             Error[n] = error = compute_solution(num_nodes);
+//            error = compute_solution(num_nodes);
             System.out.println("error for " + num_nodes + " grid nodes = "
                     + error);
         }
