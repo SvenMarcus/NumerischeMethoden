@@ -11,6 +11,10 @@ public class OneDimensionalGridSolver {
     private double[] newStepValues;
     private Function function;
     private double exitCondition;
+    private double gridDelta;
+
+    public OneDimensionalGridSolver() {
+    }
 
     public OneDimensionalGridSolver(OneDimensionalGrid grid, Function function) {
         this.grid = grid;
@@ -28,6 +32,7 @@ public class OneDimensionalGridSolver {
 
     public void solve() {
         double delta;
+        gridDelta = grid.getGridDelta();
         do {
             delta = 0.;
             for (int i = 1; i < grid.getNumberOfNodes() - 1; i++) {
@@ -41,7 +46,6 @@ public class OneDimensionalGridSolver {
     }
 
     private void calculateNewData(int i) {
-        double gridDelta = grid.getGridDelta();
         double functionValue = function.evaluateAt(grid.getCoordinateOf(i));
         newStepValues[i] = 0.5 * (lastStepValues[i + 1] + lastStepValues[i - 1] - gridDelta * gridDelta * functionValue);
     }
@@ -60,4 +64,12 @@ public class OneDimensionalGridSolver {
         this.exitCondition = exitCondition;
     }
 
+    public void setGrid(OneDimensionalGrid grid) {
+        this.grid = grid;
+        initArrays();
+    }
+
+    public void setFunction(Function function) {
+        this.function = function;
+    }
 }

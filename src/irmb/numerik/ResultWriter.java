@@ -18,6 +18,7 @@ public class ResultWriter {
     public String createResults() {
         String resultString = "";
         DecimalFormat formatter = new DecimalFormat("0.00000000000000000");
+        resultString += "Berechnung für " + grid.getNumberOfNodes() + " Knoten \n";
         for (int i = 0; i < grid.getNumberOfNodes(); i++) {
             resultString += "Koordinate: " + formatter.format(grid.getCoordinateOf(i))
                     + " \t Numerisch: " + formatter.format(grid.getGridData()[i])

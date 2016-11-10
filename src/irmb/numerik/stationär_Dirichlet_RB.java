@@ -33,7 +33,7 @@ public class stationär_Dirichlet_RB {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
+        long start = System.currentTimeMillis();
         // in order to compute the solution for different grid sizes,
         // we use grids consisting of 2^n grid nodes where n=2 .. n_max
 
@@ -55,6 +55,8 @@ public class stationär_Dirichlet_RB {
             System.out.println("error for " + num_nodes + " grid nodes = "
                     + error);
         }
+        long end = System.currentTimeMillis();
+        System.out.println((end - start) / 1000);
         for (int n = 0; n < n_max - 2; n++) {
             System.out.println("Convergence order for level " + n + " to "
                     + (n + 1) + "= "
@@ -97,9 +99,9 @@ public class stationär_Dirichlet_RB {
 
     public static double f(double x) {
 //        T''(x)=f(x)=sin(x*2*Math.PI/L)
-//        return(Math.sin(x*2*Math.PI/L));
+        return (Math.sin(x * 2 * Math.PI / L));
 //        T''(x)=f(x)=scale_factor*x^2 ->
-        return (scale_factor * x * x);
+//        return (scale_factor * x * x);
     }
 
     public static double compute_residuum() {
@@ -133,9 +135,12 @@ public class stationär_Dirichlet_RB {
         //T(L)=Di_BC_Right
         // ->T(L)=Di_BC_Left + b*L + e * L^4 = Di_BC_Right  
         // -> b=(Di_BC_Right-Di_BC_Left-e*L^4)/L 
-        return (Di_BC_Left + (Di_BC_Right - Di_BC_Left - 1.0 / 12.
-                * scale_factor * Math.pow(L, 4.0)) / L * x
-                + 1.0 / 12.0 * scale_factor * Math.pow(x, 4.0));
+//        return (Di_BC_Left + (Di_BC_Right - Di_BC_Left - 1.0 / 12.
+//                * scale_factor * Math.pow(L, 4.0)) / L * x
+//                + 1.0 / 12.0 * scale_factor * Math.pow(x, 4.0));
+        return -Math.sin(2. * x * Math.PI / L) * Math.pow(L, 2) / (Math.PI * Math.PI * 4.)
+                + (Di_BC_Right - Di_BC_Left) * x / L
+                + Di_BC_Left;
     }
 
     public static double compute_solution(int num_nodes) {

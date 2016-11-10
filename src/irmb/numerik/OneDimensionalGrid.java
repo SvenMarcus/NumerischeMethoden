@@ -7,18 +7,42 @@ public class OneDimensionalGrid {
     private int numberOfNodes;
     private double length;
     private double gridDelta;
-
+    private double[] coordinates;
     private double[] nodeValues;
+
+    public OneDimensionalGrid() {
+    }
 
     public OneDimensionalGrid(int numberOfNodes, double length) {
         this.numberOfNodes = numberOfNodes;
         this.length = length;
+        this.coordinates = new double[numberOfNodes];
         this.nodeValues = new double[numberOfNodes];
         calcGridDelta();
+        calcCoordinates();
     }
 
     private void calcGridDelta() {
         gridDelta = length / (numberOfNodes - 1);
+    }
+
+    private void calcCoordinates() {
+        for (int i = 0; i < numberOfNodes; i++)
+            coordinates[i] = i * gridDelta;
+    }
+
+    public void setNumberOfNodes(int numberOfNodes) {
+        this.numberOfNodes = numberOfNodes;
+        this.coordinates = new double[numberOfNodes];
+        this.nodeValues = new double[numberOfNodes];
+        calcGridDelta();
+        calcCoordinates();
+    }
+
+    public void setLength(double length) {
+        this.length = length;
+        calcGridDelta();
+        calcCoordinates();
     }
 
     public void setLeftBoundaryCondition(double dirichletValue) {
@@ -46,9 +70,7 @@ public class OneDimensionalGrid {
     }
 
     public double getCoordinateOf(int node) {
-        if (node < numberOfNodes)
-            return node * gridDelta;
-        throw new IndexOutOfBoundsException("Max index: " + numberOfNodes + ", got: " + node);
+        return coordinates[node];
     }
 
     public double[] getGridData() {
