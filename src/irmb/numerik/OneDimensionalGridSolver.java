@@ -12,7 +12,6 @@ public class OneDimensionalGridSolver {
     private Function function;
     private double exitCondition;
 
-
     public OneDimensionalGridSolver(OneDimensionalGrid grid, Function function) {
         this.grid = grid;
         this.function = function;
@@ -47,8 +46,8 @@ public class OneDimensionalGridSolver {
         newStepValues[i] = 0.5 * (lastStepValues[i + 1] + lastStepValues[i - 1] - gridDelta * gridDelta * functionValue);
     }
 
-    private double calculateDelta(double delta, int i) {
-        return Math.max(Math.abs(newStepValues[i] - lastStepValues[i]), delta);
+    private double calculateDelta(double lastDelta, int i) {
+        return Math.max(Math.abs(newStepValues[i] - lastStepValues[i]), lastDelta);
     }
 
 
@@ -61,4 +60,5 @@ public class OneDimensionalGridSolver {
     public void setExitCondition(double exitCondition) {
         this.exitCondition = exitCondition;
     }
+
 }
