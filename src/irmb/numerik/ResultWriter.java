@@ -23,7 +23,7 @@ public class ResultWriter {
                     + " \t Numerisch: " + formatter.format(grid.getGridData()[i])
                     + " \t Analytisch: " + formatter.format(analyticFunction.evaluateAt(grid.getCoordinateOf(i))) + "\n";
         }
-        resultString += "\nFehler: " + calculateError();
+        resultString += "\nFehler: " + calculateError() + "\n";
         return resultString;
     }
 

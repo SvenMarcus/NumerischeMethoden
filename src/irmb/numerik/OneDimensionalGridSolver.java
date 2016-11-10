@@ -50,7 +50,6 @@ public class OneDimensionalGridSolver {
         return Math.max(Math.abs(newStepValues[i] - lastStepValues[i]), lastDelta);
     }
 
-
     private void swap() {
         double[] temp = lastStepValues;
         lastStepValues = newStepValues;
