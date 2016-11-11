@@ -99,9 +99,9 @@ public class stationär_Dirichlet_RB {
 
     public static double f(double x) {
 //        T''(x)=f(x)=sin(x*2*Math.PI/L)
-        return (Math.sin(x * 2 * Math.PI / L));
+//        return (Math.sin(x * 2 * Math.PI / L));
 //        T''(x)=f(x)=scale_factor*x^2 ->
-//        return (scale_factor * x * x);
+        return (scale_factor * x * x);
     }
 
     public static double compute_residuum() {
@@ -135,12 +135,12 @@ public class stationär_Dirichlet_RB {
         //T(L)=Di_BC_Right
         // ->T(L)=Di_BC_Left + b*L + e * L^4 = Di_BC_Right  
         // -> b=(Di_BC_Right-Di_BC_Left-e*L^4)/L 
-//        return (Di_BC_Left + (Di_BC_Right - Di_BC_Left - 1.0 / 12.
-//                * scale_factor * Math.pow(L, 4.0)) / L * x
-//                + 1.0 / 12.0 * scale_factor * Math.pow(x, 4.0));
-        return -Math.sin(2. * x * Math.PI / L) * Math.pow(L, 2) / (Math.PI * Math.PI * 4.)
-                + (Di_BC_Right - Di_BC_Left) * x / L
-                + Di_BC_Left;
+        return (Di_BC_Left + (Di_BC_Right - Di_BC_Left - 1.0 / 12.
+                * scale_factor * Math.pow(L, 4.0)) / L * x
+                + 1.0 / 12.0 * scale_factor * Math.pow(x, 4.0));
+//        return -Math.sin(2. * x * Math.PI / L) * Math.pow(L, 2) / (Math.PI * Math.PI * 4.)
+//                + (Di_BC_Right - Di_BC_Left) * x / L
+//                + Di_BC_Left;
     }
 
     public static double compute_solution(int num_nodes) {

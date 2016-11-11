@@ -41,8 +41,7 @@ public class OneDimensionalGridSolver {
             }
             swap();
         } while (delta >= exitCondition);
-        for (int i = 0; i < grid.getNumberOfNodes(); i++)
-            grid.setGridNodeValue(i, newStepValues[i]);
+        grid.setNodeValues(newStepValues);
     }
 
     private void calculateNewData(int i) {

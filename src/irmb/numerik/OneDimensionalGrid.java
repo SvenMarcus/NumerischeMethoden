@@ -10,16 +10,8 @@ public class OneDimensionalGrid {
     private double[] coordinates;
     private double[] nodeValues;
 
-    public OneDimensionalGrid() {
-    }
 
-    public OneDimensionalGrid(int numberOfNodes, double length) {
-        this.numberOfNodes = numberOfNodes;
-        this.length = length;
-        this.coordinates = new double[numberOfNodes];
-        this.nodeValues = new double[numberOfNodes];
-        calcGridDelta();
-        calcCoordinates();
+    public OneDimensionalGrid() {
     }
 
     private void calcGridDelta() {
@@ -43,6 +35,10 @@ public class OneDimensionalGrid {
         this.length = length;
         calcGridDelta();
         calcCoordinates();
+    }
+
+    public void setNodeValues(double[] nodeValues) {
+        this.nodeValues = nodeValues;
     }
 
     public void setLeftBoundaryCondition(double dirichletValue) {
@@ -80,6 +76,7 @@ public class OneDimensionalGrid {
     public double getLeftBoundaryCondition() {
         return nodeValues[0];
     }
+
 
     public double getRightBoundaryCondition() {
         return nodeValues[nodeValues.length - 1];
